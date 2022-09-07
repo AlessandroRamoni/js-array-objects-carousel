@@ -40,5 +40,5 @@ const immagini = [
 for (i = 0; i < immagini.length; i++) {
   console.log(immagini[i].url);
   //   const immagine = immagini[i];
-  imgContainer.innerHTML += `<div class="carousel-images">${immagini[i].url}</div>`;
+  imgContainer.innerHTML += `<img class="carousel-img" src="${immagini[i].url}">`;
 }
