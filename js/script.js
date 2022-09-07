@@ -58,10 +58,6 @@ function buildCarousel(urls, activeIndex) {
   carouselThumbs.innerHTML = content;
 }
 
-function buildCarouselNew()
-
-
-
 function createImageArray(numImages) {
   const images = [];
   for (let i = 1; i <= numImages; i++) {
