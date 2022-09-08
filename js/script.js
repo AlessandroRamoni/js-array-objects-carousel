@@ -50,6 +50,8 @@ const CHANGE_IMAGE_DELAY = 5;
 // const images = (NUM_IMAGES);
 // console.log(images);
 
+let direction = true; // se true muove automaticamente in avanti, se false indietro
+
 let activeIndex = 0;
 buildCarousel(images, activeIndex);
 
@@ -58,10 +60,27 @@ console.log("ho creato il timer", idInterval);
 
 const leftArrowButton = document.getElementById("left-arrow");
 const rightArrowButton = document.getElementById("right-arrow");
+const invertDirectionButton = document.querySelector(
+  "invert-direction-btn button"
+);
 
 leftArrowButton.addEventListener("click", moveCarouselPrevious);
 
 rightArrowButton.addEventListener("click", moveCarouselForward);
+
+invertDirectionButton.addEventListener("click", invertDirection);
+
+function automaticImageChange() {
+  if (direction) {
+    moveCarouselForward();
+  } else {
+    moveCarouselPrevious;
+  }
+}
+
+function invertDirection() {
+  direction = !direction;
+}
 
 function moveCarouselForward() {
   // console.log("cancello il timer di", idInterval);
