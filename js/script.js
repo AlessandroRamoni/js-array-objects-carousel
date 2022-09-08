@@ -54,6 +54,7 @@ let activeIndex = 0;
 buildCarousel(images, activeIndex);
 
 let idInterval = setInterval(moveCarouselForward, CHANGE_IMAGE_DELAY * 1000);
+console.log("ho creato il timer", idInterval);
 
 const leftArrowButton = document.getElementById("left-arrow");
 const rightArrowButton = document.getElementById("right-arrow");
@@ -63,34 +64,45 @@ leftArrowButton.addEventListener("click", moveCarouselPrevious);
 rightArrowButton.addEventListener("click", moveCarouselForward);
 
 function moveCarouselForward() {
+  // console.log("cancello il timer di", idInterval);
   clearInterval(idInterval);
   // se l'indice si trova in fondo allora lo riposizione all'inizio dell'array
   activeIndex = activeIndex < images.length - 1 ? activeIndex + 1 : 0;
   buildCarousel(images, activeIndex);
   idInterval = setInterval(moveCarouselForward, CHANGE_IMAGE_DELAY * 1000);
+  // console.log("ho creato il timer", idInterval);
 }
 
 function moveCarouselPrevious() {
+  // console.log("cancello il timer di", idInterval);
   clearInterval(idInterval);
   // se l'indice è in prima posizione si valorizza all'ultima posizione dell'array
   activeIndex = activeIndex > 0 ? activeIndex - 1 : images.length - 1;
   buildCarousel(images, activeIndex);
   idInterval = setInterval(moveCarouselForward, CHANGE_IMAGE_DELAY * 1000);
+  // console.log("ho creato il timer", idInterval);
 }
 
-function buildCarousel(urls, activeIndex) {
+function buildCarousel(placesArray, activeIndex) {
   const carouselImages = document.querySelector(".carousel-images");
   const carouselThumbs = document.querySelector(".carousel-thumbs");
+  const activeImageTitleElement = document.querySelector(".active-image-title");
   let content = "";
-  for (let i = 0; i < urls.length; i++) {
-    const indiceArray = urls[i];
+  let activeTitle = "";
+  for (let i = 0; i < placesArray.length; i++) {
+    const place = placesArray[i];
+    if (i === activeIndex) {
+      activeTitle = place.title;
+    }
     const imageClass =
       i === activeIndex ? "carousel-img active" : "carousel-img";
-    content += `<img class="${imageClass}" src="${indiceArray.url}" title="${indiceArray.title}" alt="${indiceArray.description}" />`;
+    content += `<img class="${imageClass}" src="${place.url}" title="${place.title}" alt="${place.description}" />`;
   }
   // console.log({content});
+  console.log(activeTitle);
   carouselImages.innerHTML = content;
   carouselThumbs.innerHTML = content;
+  activeImageTitleElement.innerHTML = activeTitle;
 }
 
 /*

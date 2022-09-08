@@ -76,3 +76,12 @@ body {
   background-color: yellowgreen;
 }
 
+.active-image-title{
+  position: absolute;
+  bottom: 30px;
+  left: 30px;
+  color: rgb(18, 58, 143);
+  background-color: rgb(42, 165, 134);
+  font-size: 2em;
+}
+
